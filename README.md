@@ -32,10 +32,11 @@ Please make sure that fzf is installed by following the directions over at: http
 
 ### Keybindings: 
 
-| Variable Name           | Description                                                           | Default Binding |
-|-------------------------|-----------------------------------------------------------------------|-----------------|
-| @open-file-nvim-key     | Parses the current visible pane output for filenames                  | C-o             |
-| @open-file-nvim-all-key | Parses the entire available history in the current pane for filenames | C-O             |
+| Variable Name                   | Description                                                           | Default Binding |
+|---------------------------------|-----------------------------------------------------------------------|-----------------|
+| @open-file-nvim-key             | Parses the current visible pane output for filenames                  | prefix + o      |
+| @open-file-nvim-all-key         | Parses the entire available history in the current pane for filenames | prefix + O      |
+| @open-file-nvim-all-history-key | Parses the entire history from all panes in a window                  | prefix + A      |
 
 ### Capture the output visible in the current pane: 
 
@@ -45,11 +46,16 @@ The default binding uses `o` so `prefix + o` will run the process to find files 
 
 The default binding uses `O` so `prefix + O` will run the above process for the entire history of the current pane.
 
+### Capture the entire history of all panes in a window:
+
+The default binding uses `A` so `prefix + A` will run the above process for the entire history of all panes in a tmux window. This operation can be expensive.
+
 ### Change the default bindings
 
 ```bash
 set -g @open-file-nvim-key {newbinding}
 set -g @open-file-nvim-all-key {newbinding}
+set -g @open-file-nvim-all-history-key {newbinding}
 ```
 
 ## Development
@@ -79,6 +85,8 @@ bats tests
 
 ### Github Actions
 
+#### Shellcheck
+
 We use [shellcheck](https://github.com/koalaman/shellcheck) to perform static analysis as a PR check. To install shellcheck locally refer to the installation guide in the shellcheck github. You can also use https://www.shellcheck.net/
 
 To run shellcheck on all files in the project locally:
@@ -87,6 +95,12 @@ To run shellcheck on all files in the project locally:
  find . -name "*.sh" -print0 | xargs -0 shellcheck -x
 ```
 
+> NOTE: You can also use `dev/run-shellcheck.sh` to run shellcheck against all files in the project.
+
 Warnings will not cause the github action check to fail, only errors.
 
-We also run the bats tests as a part of the PR check workflow.
+#### Shfmt
+
+We use [shfmt](https://github.com/patrickvane/shfmt) to ensure consistent formatting. You can run formatting on the project by running `dev/run-format.sh`
+
+We also run the bats tests as a part of the PR check workflow, which is covered under the unit testing section. But since you're here: `bats tests` will execute the unit tests for the project.
