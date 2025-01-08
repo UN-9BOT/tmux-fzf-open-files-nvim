@@ -6,7 +6,9 @@ A tmux plugin to parse terminal output for filenames and open them in neovim. It
 
 https://github.com/user-attachments/assets/e21d068a-a0ad-4fce-adf9-d5bc889b5458
 
+tmux-fzf-open-files-nvim works on large histories as well: 
 
+https://github.com/user-attachments/assets/81f4c32f-9706-4518-9508-335bbd082d89
 
 ---
 [![Tests](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/tests.yml/badge.svg)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/tests.yml)
