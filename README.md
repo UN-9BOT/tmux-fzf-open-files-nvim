@@ -2,7 +2,11 @@
 
 A tmux plugin to parse terminal output for filenames and open them in neovim. It works by creating a tmux binding to copy the currently selected panes content, match output that is a file path ending in an extension or with location information 83:57, pass the file paths to fzf, and open the fzf selected files in your default $EDITOR (only tested with neovim currently). The plugin will search for panes in the curren window running neovim and open the selected files as new tabs. If a current neovim instances does not exist, a new horizontal pane will be created to host neovim and the files will be opened there.
 
-https://github.com/user-attachments/assets/f90bd8f9-dd56-420b-b708-c2cc51cea70f
+
+
+https://github.com/user-attachments/assets/e21d068a-a0ad-4fce-adf9-d5bc889b5458
+
+
 
 ---
 [![Tests](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/tests.yml/badge.svg)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/tests.yml)
@@ -42,13 +46,19 @@ Please make sure that fzf is installed by following the directions over at: http
 
 The default binding uses `o` so `prefix + o` will run the process to find files in the current pane output. A new horizontal pane will be opened to the right of the current pane. The pane visible text will be sent to `fzf -m` multi select mode so that multiple files may be selected and sent to the $EDITOR.
 
+https://github.com/user-attachments/assets/4bb92004-d29c-4849-9633-650b63519e94
+
 ### Capture the entire history of the current pane:
 
 The default binding uses `O` so `prefix + O` will run the above process for the entire history of the current pane.
 
+https://github.com/user-attachments/assets/bc5c7bcf-7c3a-4cbf-b202-e5137db4a827
+
 ### Capture the entire history of all panes in a window:
 
 The default binding uses `A` so `prefix + A` will run the above process for the entire history of all panes in a tmux window. This operation can be expensive.
+
+https://github.com/user-attachments/assets/8186930c-4881-455c-922a-1d7896225df1
 
 ### Change the default bindings
 
