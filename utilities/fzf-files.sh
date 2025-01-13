@@ -11,7 +11,7 @@ files=()
 if [ "$1" = "--selected-pane-history" ]; then
   while IFS= read -r file; do
     files+=("$file")
-  done < <(tmux capture-pane -J -S- -E- -p | parse_files)
+  done < <(tmux capture-pane -J -S- -E- -p | parse_files | sanitize_pane_output)
 elif [ "$1" = "--all-pane-history" ]; then
   # capture each pane history in the current window
   panes=$(tmux list-panes -F '#{pane_id} #{pane_current_command} #{pane_current_path}')
@@ -21,13 +21,13 @@ elif [ "$1" = "--all-pane-history" ]; then
 
     while IFS= read -r file; do
       files+=("$file")
-    done < <(tmux capture-pane -t "$pane_id" -J -S - -E - -p | parse_files)
+    done < <(tmux capture-pane -t "$pane_id" -J -S - -E - -p | parse_files | sanitize_pane_output)
   done <<<"$panes"
 else
   # capture content visible in the current pane
   while IFS= read -r file; do
     files+=("$file")
-  done < <(tmux capture-pane -J -p | parse_files)
+  done < <(tmux capture-pane -J -p | parse_files | sanitize_pane_output)
 fi
 
 if [ ${#files[@]} -eq 0 ]; then
@@ -36,7 +36,7 @@ else
   tmpfile=$(mktemp)
   outfile=$(mktemp)
   # go ahead and separate the files by new line. I think fzf loves this
-  printf "%s\n" "${files[@]}" >"$tmpfile"
+  printf "%s\n" "${files[@]}" | awk 'NF' >"$tmpfile"
 
   tmux display-popup -E "fzf -m < \"$tmpfile\" > \"$outfile\""
 
