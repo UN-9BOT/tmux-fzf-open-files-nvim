@@ -1,5 +1,9 @@
 # TMUX fzf Open Files nvim
 
+[![Tests](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/tests.yml/badge.svg)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/tests.yml)
+[![Run shellcheck](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/shellcheck.yml)
+[![Format Check shfmt](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/formatter.yml/badge.svg)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/formatter.yml)
+
 A tmux plugin to parse terminal output for filenames and open them in neovim. It works by creating a tmux binding to copy the currently selected panes content, match output that is a file path ending in an extension or with location information 83:57, pass the file paths to fzf, and open the fzf selected files in your default $EDITOR (only tested with neovim currently). The plugin will search for panes in the current window running neovim and open the selected files as new tabs. If a current neovim instances does not exist, a new horizontal pane will be created to host neovim and the files will be opened there.
 
 
@@ -11,8 +15,6 @@ tmux-fzf-open-files-nvim works on large histories as well:
 https://github.com/user-attachments/assets/81f4c32f-9706-4518-9508-335bbd082d89
 
 ---
-[![Tests](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/tests.yml/badge.svg)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/tests.yml)
-[![Run shellcheck](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/shellcheck.yml)
 
 ## Installation 
 
