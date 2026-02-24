@@ -4,7 +4,21 @@
 [![Run shellcheck](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/shellcheck.yml/badge.svg?branch=main)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/shellcheck.yml)
 [![Format Check shfmt](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/formatter.yml/badge.svg?branch=main)](https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim/actions/workflows/formatter.yml)
 
-A tmux plugin to parse terminal output for filenames and open them in neovim. It works by creating a tmux binding to copy the currently selected panes content, match output that is a file path ending in an extension or with location information 83:57, pass the file paths to fzf, and open the fzf selected files in your default $EDITOR (only tested with neovim currently). The plugin will search for panes in the current window running neovim and open the selected files as new tabs. If a current neovim instances does not exist, a new horizontal pane will be created to host neovim and the files will be opened there.
+A tmux plugin to parse terminal output for filenames and open them in neovim. It works by creating a tmux binding to copy the currently selected panes content, match output that is a file path ending in an extension or with location information, pass the file paths to fzf, and open the fzf selected files in your default $EDITOR (only tested with neovim currently). The plugin will search for panes in the current window running neovim and open the selected files as new tabs. If a current neovim instances does not exist, a new horizontal pane will be created to host neovim and the files will be opened there.
+
+### Supported Location Formats
+
+The plugin recognizes multiple location formats appended to file paths:
+
+- `file.py:86` — line number only
+- `file.py:86:12` — line and column numbers
+- `file.py:L99` — line number with L prefix
+- `file.py(45)` — parentheses format with line
+- `file.py(45, 20)` — parentheses format with line and column
+- `file.py :86` — space before location info (also supported)
+- `@src/path/file.py:L99` — @ prefix is stripped during parsing
+
+All formats will automatically navigate to the specified line (and column when provided) in neovim.
 
 
 
